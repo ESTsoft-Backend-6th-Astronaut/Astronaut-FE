@@ -3,7 +3,6 @@
     "browser": true,
     "es2021": true
   },
-  "singleQuote": false,
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
@@ -18,10 +17,11 @@
   },
   "plugins": ["react", "prettier"],
   "rules": {
-    "indent": ["error", 2], // ESLint가 2칸 들여쓰기를 강제하도록 설정
+    "indent": ["error", 2],
     "prettier/prettier": [
       "error",
       {
+        "singleQuote": true, // Prettier 옵션으로 이동
         "tabWidth": 2,
         "useTabs": false
       }
