@@ -1,6 +1,6 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
-import About from "./pages/About";
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import About from './pages/About';
 const Home = () => <h1>Home Page</h1>;
 
 function App() {
