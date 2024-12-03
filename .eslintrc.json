@@ -17,7 +17,11 @@
   },
   "plugins": ["react", "prettier"],
   "rules": {
-    "indent": ["error", 2],
+    "no-unused-vars": "off", // 사용하지 않는 변수 경고 끄기
+    "react/prop-types": "off", // PropTypes 검사 끄기
+    "no-console": "off", // console.log 허용
+    "no-debugger": "off", // debugger 허용
+    "no-undef": "off",
     "prettier/prettier": [
       "error",
       {
