@@ -17,8 +17,24 @@ function App() {
         <Route path="/keyword-details" element={<KeywordDetails />} />
         <Route path="/stock-details" element={<StockDetails />} />
         <Route path="/main" element={<Main />} />
+        <Route
+          path="/:keyword_id/keyword-details"
+          element={<KeywordDetails />}
+        />
+        <Route path="/stock-details" element={<StockDetails />} />
+        {/* /:keyword_id가 URL파라미터로 keyword_id를 받음 */}
+        <Route
+          path="/:keyword_id/search-volume"
+          element={<RecommendStockSearchVolume />}
+        />
+        <Route
+          path="/:keyword_id/recommend-stock"
+          element={<RecommendStock />}
+        />
       </Routes>
+
     </div>
+
   );
 }
 
