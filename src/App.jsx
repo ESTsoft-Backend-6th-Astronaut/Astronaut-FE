@@ -7,6 +7,7 @@ import StockDetails from './pages/StockDetails';
 import Main from './pages/Main';
 import RecommendStockSearchVolume from './components/RecommendStockSearchVolume';
 import RecommendStock from './components/RecommendStock';
+import Portfolio from './pages/Portfolio';
 const Home = () => <h1>Home Page</h1>;
 import PortfolioRecommend from './pages/PortfolioRecommend';
 
@@ -35,6 +36,7 @@ function App() {
           element={<RecommendStock />}
         />
         <Route path="/portfolio-recommend" element={<PortfolioRecommend />} />
+        <Route path="/portfolio" element={<Portfolio />} />
       </Routes>
     </div>
   );
