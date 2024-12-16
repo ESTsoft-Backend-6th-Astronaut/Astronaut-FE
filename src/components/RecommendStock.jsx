@@ -5,31 +5,47 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import axios from 'axios';
 
-const RecommendStock = ({ keywordId }) => {
-  const [recommendStocks, setRecommendStocks] = useState([]);
+const RecommendStock = ({ apiUrl, dataType }) => {
+  const [data, setData] = useState([]);
+
+  // 포트폴리오 추천에도 사용할 수 있도록 수정
 
   // 추천 종목 가져오기
-  const fetchRecommendStocks = async () => {
-    if (keywordId) {
-      try {
-        const response = await axios.get(
-          `/api/keywords/${keywordId}/recommend`,
-        );
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(apiUrl);
 
-        // 추천 종목 데이터를 상태에 저장
-        setRecommendStocks(response.data);
-      } catch (error) {
-        console.error('추천 종목 조회 오류:', error);
+      // 데이터 매핑 후 상태에 저장
+      // 키워드 관련 추천 종목/포트폴리오 관련 추천 종목 각각 매핑되게
+      let mappedData = [];
+
+      // 키워드 추천 주식
+      if (dataType === 'RecommendKeywordStockDTO') {
+        mappedData = response.data.map((item) => ({
+          id: item.recommendStockId,
+          title: item.stockName,
+          content: item.reason,
+          stockPrice: item.stockPrice,
+        }));
+        // 포트폴리오 추천 주식
+      } else if (dataType === 'PorfolioStockResponseDTO') {
+        mappedData = response.data.map((item) => ({
+          id: item.stockCode, // 일단 종목번호로 넣어둠 : 종목번호로 묶이도록록
+          title: item.stockName,
+          content: item.reason,
+          stockPrice: item.stockPrice,
+        }));
       }
+
+      setData(mappedData);
+    } catch (error) {
+      console.error('데이터 조회 오류:', error);
     }
   };
 
   useEffect(() => {
-    if (keywordId) {
-      // 키워드 id가 변경되면 추천 종목 가져오기
-      fetchRecommendStocks();
-    }
-  }, [keywordId]);
+    fetchData();
+  }, [apiUrl, dataType]);
 
   return (
     <div>
@@ -41,8 +57,8 @@ const RecommendStock = ({ keywordId }) => {
           pagination={{ clickable: true }}
           style={{ overflow: 'visible' }}
         >
-          {recommendStocks.map((stock) => (
-            <SwiperSlide key={stock.recommendStockId}>
+          {data.map((item) => (
+            <SwiperSlide key={item.id}>
               <Card
                 sx={{
                   maxWidth: 350,
@@ -57,10 +73,10 @@ const RecommendStock = ({ keywordId }) => {
               >
                 <CardContent sx={{ flexGrow: 1 }}>
                   <Typography gutterBottom variant="h5" component="div">
-                    {stock.stockName}
+                    {item.title}
                   </Typography>
                   <Typography variant="body2" color="text.Secondary">
-                    {stock.reason}
+                    {item.content}
                   </Typography>
                 </CardContent>
                 <Box
@@ -72,9 +88,8 @@ const RecommendStock = ({ keywordId }) => {
                     px: 2,
                   }}
                 >
-                  {/* 시가 받아오도록 수정 */}
                   <Chip
-                    label={'시가 : ' + stock.stockPrice}
+                    label={'시가 : ₩' + item.stockPrice}
                     color="default"
                     size="small"
                   />
