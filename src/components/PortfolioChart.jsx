@@ -35,8 +35,14 @@ function PortfolioChart() {
   }
 
   return (
-    <div>
-      <h1>나의 주식 포트폴리오</h1>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+      }}
+    >
       {data ? (
         <PieChart
           series={[
@@ -45,7 +51,7 @@ function PortfolioChart() {
               innerRadius: 75,
             },
           ]}
-          width={500}
+          width={800}
           height={200}
         />
       ) : (
