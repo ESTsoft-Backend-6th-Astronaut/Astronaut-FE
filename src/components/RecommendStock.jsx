@@ -30,7 +30,7 @@ const RecommendStock = ({ apiUrl, dataType }) => {
         // 포트폴리오 추천 주식
       } else if (dataType === 'PorfolioStockResponseDTO') {
         mappedData = response.data.map((item) => ({
-          id: item.stockCode, // 종목번호로 묶이도록 하기 위해 종목번호로 넣어둠 
+          id: item.stockCode, // 일단 종목번호로 넣어둠 : 종목번호로 묶이도록록
           title: item.stockName,
           content: item.reason,
           stockPrice: item.stockPrice,
@@ -49,7 +49,14 @@ const RecommendStock = ({ apiUrl, dataType }) => {
 
   return (
     <div>
-      <Box sx={{ width: '100%', height: '500px', overflow: 'visible' }}>
+      <Box
+        sx={{
+          width: '100%',
+          height: '500px',
+          overflow: 'visible',
+          marginTop: '40px',
+        }}
+      >
         <Swiper
           spaceBetween={15}
           slidesPerView={4.5}
@@ -69,6 +76,7 @@ const RecommendStock = ({ apiUrl, dataType }) => {
                   '&:hover': {
                     transform: 'scale(1.05)',
                   },
+                  paddingBottom: '20px',
                 }}
               >
                 <CardContent sx={{ flexGrow: 1 }}>
