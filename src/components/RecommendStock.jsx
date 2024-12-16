@@ -30,7 +30,7 @@ const RecommendStock = ({ apiUrl, dataType }) => {
         // 포트폴리오 추천 주식
       } else if (dataType === 'PorfolioStockResponseDTO') {
         mappedData = response.data.map((item) => ({
-          id: item.stockCode, // 일단 종목번호로 넣어둠 : 종목번호로 묶이도록록
+          id: item.stockCode, // 종목번호로 묶이도록 하기 위해 종목번호로 넣어둠 
           title: item.stockName,
           content: item.reason,
           stockPrice: item.stockPrice,
