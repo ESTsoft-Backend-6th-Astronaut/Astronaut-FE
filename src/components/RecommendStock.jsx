@@ -28,7 +28,7 @@ const RecommendStock = ({ apiUrl, dataType }) => {
           stockPrice: item.stockPrice,
         }));
         // 포트폴리오 추천 주식
-      } else if (dataType === 'PorfolioStockResponseDTO') {
+      } else if (dataType === 'PortfolioStockResponseDTO') {
         mappedData = response.data.map((item) => ({
           id: item.stockCode, // 일단 종목번호로 넣어둠 : 종목번호로 묶이도록록
           title: item.stockName,
@@ -76,7 +76,7 @@ const RecommendStock = ({ apiUrl, dataType }) => {
                   '&:hover': {
                     transform: 'scale(1.05)',
                   },
-                  paddingBottom: '20px',
+                  paddingBottom: '15px',
                 }}
               >
                 <CardContent sx={{ flexGrow: 1 }}>
