@@ -13,7 +13,12 @@ const KeywordDetails = () => {
   return (
     <div>
       <NavBar />
-      <div style={{ paddingLeft: '200px', paddingRight: '200px' }}>
+      <div
+        style={{
+          paddingLeft: '200px',
+          paddingRight: '200px',
+        }}
+      >
         <Keyword keywordId={keyword_id} />
         <KeywordNews keywordId={keyword_id} />
         <RecommendStockSearchVolume keywordId={keyword_id} />
