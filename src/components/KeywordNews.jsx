@@ -32,7 +32,15 @@ function KeywordNews() {
       <h1>KeywordNews</h1>
       {data ? (
         data.data.map((news) => (
-          <Box key={news.newsId} sx={{ maxWidth: 1030, minWidth: 275, mb: 2 }}>
+          <Box
+            key={news.newsId}
+            sx={{
+              maxWidth: 1030,
+              minWidth: 275,
+              mb: 2,
+              alignContent: 'center',
+            }}
+          >
             <Card variant="outlined">
               <CardContent>
                 <Typography sx={{ color: 'text.secondary', mb: 1.5 }}>
