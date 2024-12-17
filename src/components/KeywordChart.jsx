@@ -3,7 +3,7 @@ import axios from 'axios';
 import { ResponsiveCirclePacking } from '@nivo/circle-packing';
 import { useNavigate } from 'react-router-dom'; // 페이지 이동을 위해 사용
 
-const Chart = () => {
+const KeywordChart = () => {
   const [data, setData] = useState({ name: 'root', children: [] }); // 초기 빈 트리 구조
   const [error, setError] = useState(null);
   const isMounted = useRef(true); // 마운트 상태 확인
@@ -120,4 +120,4 @@ const Chart = () => {
   );
 };
 
-export default Chart;
+export default KeywordChart;
