@@ -1,8 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Card, CardContent, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import {
+  Card,
+  CardContent,
+  Typography,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+} from '@mui/material';
 
-const KeywordRanking = () => {
+const KeywordRank = () => {
   const [keywords, setKeywords] = useState([]);
   const [error, setError] = useState(null);
 
@@ -22,7 +33,7 @@ const KeywordRanking = () => {
   }
 
   // interest의 최대값을 찾기
-  const maxInterest = Math.max(...keywords.map(keyword => keyword.interest));
+  const maxInterest = Math.max(...keywords.map((keyword) => keyword.interest));
 
   return (
     <Card sx={{ maxWidth: 600, margin: '0 auto', mt: 5 }}>
@@ -44,7 +55,9 @@ const KeywordRanking = () => {
                 <TableRow key={index}>
                   <TableCell>{keyword.ranking}</TableCell>
                   <TableCell>{keyword.keywordName}</TableCell>
-                  <TableCell>{Math.round((keyword.interest / maxInterest) * 100)}%</TableCell>
+                  <TableCell>
+                    {Math.round((keyword.interest / maxInterest) * 100)}%
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -55,4 +68,4 @@ const KeywordRanking = () => {
   );
 };
 
-export default KeywordRanking;
+export default KeywordRank;
