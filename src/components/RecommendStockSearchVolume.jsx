@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { LineChart } from '@mui/x-charts/LineChart';
+import { Typography } from '@mui/material';
 
 const RecommendStockSearchVolume = ({ keywordId }) => {
   // 상태값 초기화
   const [data, setData] = useState([]);
   const [xAxisData, setXAxisData] = useState([]);
+  const [hour, setHour] = useState(new Date().getHours()); // 현재 시간 상태
 
   // 추천 종목 가져오기
   const fetchRecommendStocks = async () => {
@@ -18,8 +20,13 @@ const RecommendStockSearchVolume = ({ keywordId }) => {
       );
 
       // 어제제 날짜 기준으로 지난 10일간의 날짜 계산
+      // 데이터가 갱신되기 전인 오전 6시 전에는 그 전날의 데이터를 보여주도록
       const yesterday = new Date();
-      yesterday.setDate(yesterday.getDate() - 1);
+      if (hour < 6) {
+        yesterday.setDate(yesterday.getDate() - 2);
+      } else {
+        yesterday.setDate(yesterday.getDate() - 1);
+      }
 
       const past10Days = Array.from({ length: 10 }, (_, i) => {
         const date = new Date(yesterday);
@@ -66,7 +73,7 @@ const RecommendStockSearchVolume = ({ keywordId }) => {
       console.log('변환된 데이터:', transformedData);
     } catch (error) {
       console.error('추천 종목 이름 및 검색량 데이터 조회 오류 발생:', error);
-      // 에러 시 빈 배열로 설정정
+      // 에러 시 빈 배열로 설정
       setData([]);
     }
   };
@@ -76,8 +83,20 @@ const RecommendStockSearchVolume = ({ keywordId }) => {
     fetchRecommendStocks();
   }, [keywordId]);
 
+  // 컴포넌트 마운트 시 매번 hour 값을 업데이트
+  useEffect(() => {
+    setHour(new Date().getHours());
+  }, []);
   return (
     <div style={{ width: '100%', height: '100%' }}>
+      <Typography
+        variant="h6"
+        component="div"
+        fontWeight="600"
+        sx={{ marginTop: '50px' }}
+      >
+        주식 검색 추이
+      </Typography>
       <LineChart
         xAxis={[
           {
@@ -108,6 +127,10 @@ const RecommendStockSearchVolume = ({ keywordId }) => {
           position: { vertical: 'bottom', horizontal: 'middle' },
         }}
       />
+      {/* 데이터 갱신 전(오전 6시 전)에는 갱신 전 문구 출력 */}
+      <Typography variant="body2" sx={{ color: 'text.secondary', mt: 1 }}>
+        {hour < 6 ? '오늘의 데이터 갱신 전입니다.' : ''}
+      </Typography>
     </div>
   );
 };

@@ -11,7 +11,7 @@ const PortfolioRecommend = () => {
       <NavBar />
       <RecommendStock
         apiUrl={portfolioRecommendApiUrl}
-        dataType="PorfolioStockResponseDTO"
+        dataType="PortfolioStockResponseDTO"
       />
       <KeywordNews />
     </div>

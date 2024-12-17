@@ -1,27 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import {
+  Box,
+  Card,
+  CardActions,
+  CardContent,
+  Button,
+  Typography,
+} from '@mui/material';
 
-function KeywordNews() {
+const KeywordNews = ({ keywordId }) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     axios
-      .get('/api/keywords/1/news')
+      .get(`/api/keywords/${keywordId}/news`)
       .then((response) => {
+        console.log(JSON.stringify(response.data, null, 2));
         setData(response.data);
       })
       .catch((error) => {
         setError(error.message);
       });
-  }, []);
+  }, [keywordId]);
 
   if (error) {
     return <p>Error: {error}</p>;
@@ -29,10 +32,18 @@ function KeywordNews() {
 
   return (
     <div>
-      <h1>KeywordNews</h1>
+      <h1>키워드 관련 뉴스</h1>
       {data ? (
         data.data.map((news) => (
-          <Box key={news.newsId} sx={{ maxWidth: 1030, minWidth: 275, mb: 2 }}>
+          <Box
+            key={news.newsId}
+            sx={{
+              // maxWidth: 1030,
+              minWidth: 275,
+              mb: 2,
+              alignContent: 'center',
+            }}
+          >
             <Card variant="outlined">
               <CardContent>
                 <Typography sx={{ color: 'text.secondary', mb: 1.5 }}>
@@ -67,6 +78,6 @@ function KeywordNews() {
       )}
     </div>
   );
-}
+};
 
 export default KeywordNews;
