@@ -1,27 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import { Link, useParams } from 'react-router-dom';
+import {
+  Box,
+  Card,
+  CardActions,
+  CardContent,
+  Button,
+  Typography,
+} from '@mui/material';
 
-function KeywordNews() {
+const KeywordNews = ({ keywordId }) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     axios
-      .get('/api/keywords/1/news')
+      .get(`/api/keywords/${keywordId}/news`)
       .then((response) => {
+        console.log(JSON.stringify(response.data, null, 2));
         setData(response.data);
       })
       .catch((error) => {
         setError(error.message);
       });
-  }, []);
+  }, [keywordId]);
 
   if (error) {
     return <p>Error: {error}</p>;
@@ -75,6 +78,6 @@ function KeywordNews() {
       )}
     </div>
   );
-}
+};
 
 export default KeywordNews;
