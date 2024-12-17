@@ -10,10 +10,17 @@ import RecommendStock from './components/RecommendStock';
 import Portfolio from './pages/Portfolio';
 import PortfolioRecommend from './pages/PortfolioRecommend';
 import KakaoCallback from './pages/KakaoCallback';
+import { createTheme } from '@mui/material';
+
+const theme = createTheme({
+  typography: {
+    fontFamily: '"Noto Sans KR", sans-serif;', // 전체 폰트 설정
+  },
+});
 
 function App() {
   return (
-    <div>
+    <div style={{ minWidth: '1092px' }}>
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/about" element={<About />} />
