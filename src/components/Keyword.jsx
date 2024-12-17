@@ -8,8 +8,6 @@ const Keyword = () => {
   console.log('URL 파라미터 keyword_id:', keyword_id);
   const [keyword, setKeyword] = useState({});
 
-  // 이쪽은 키워드 링크 거는 쪽에서 오전6시 전이면 전날의 데이터를 가져오게 설정해야 할듯
-
   // 오늘의 키워드 가져오기
   const fetchData = async () => {
     try {
@@ -53,35 +51,30 @@ const Keyword = () => {
   return (
     <div>
       <Box sx={{ mb: 3, p: 2, border: 'none', textAlign: 'center' }}>
-        {/* {키워드} */}
-        <Typography variant="h2" component="div">
-          {keyword.name}
+        <Typography variant="h2" component="div" fontWeight="600">
+          {'❝ ' + keyword.name + ' ❞'}
         </Typography>
-        {/* 관심도 + {랭킹} + 위( + {interest} + ) */}
-        <Typography variant="h4" component="div">
+        <Typography variant="h4" component="div" fontWeight="600">
           {'관심도 ' + keyword.ranking + '위(' + keyword.interest + ')'}
         </Typography>
-        {/* 0이면 긍정(파랑), 1이면 부정(빨강)  */}
         <Typography
-          variant="h4"
+          variant="h5"
           component="div"
+          fontWeight="600"
           sx={{ color: keyword.emotion === 0 ? 'blue' : 'red' }}
         >
-          {keyword.emotion === 0 ? '긍정' : '부정'}
+          {keyword.emotion === 0 ? '긍정적' : '부정적'}
         </Typography>
 
-        {/* 카드 안에, 뉴스랑 같은 사이즈 */}
-        <Card variant="outlined" sx={{ mt: 2 }}>
+        <Card variant="outlined" sx={{ mt: 2, marginTop: '30px' }}>
           <CardContent>
             <Typography variant="h5">키워드 분석</Typography>
-            {/* {reason} 약간회색 */}
             <Typography variant="body2" sx={{ color: 'text.secondary', mt: 1 }}>
               {keyword.reason}
             </Typography>
           </CardContent>
         </Card>
       </Box>
-      {/* <hr style={{ color: 'text.secondary', paddingX: '150px' }} /> */}
     </div>
   );
 };

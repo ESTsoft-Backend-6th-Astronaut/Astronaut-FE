@@ -73,7 +73,7 @@ const RecommendStockSearchVolume = ({ keywordId }) => {
       console.log('변환된 데이터:', transformedData);
     } catch (error) {
       console.error('추천 종목 이름 및 검색량 데이터 조회 오류 발생:', error);
-      // 에러 시 빈 배열로 설정정
+      // 에러 시 빈 배열로 설정
       setData([]);
     }
   };
@@ -89,6 +89,14 @@ const RecommendStockSearchVolume = ({ keywordId }) => {
   }, []);
   return (
     <div style={{ width: '100%', height: '100%' }}>
+      <Typography
+        variant="h6"
+        component="div"
+        fontWeight="600"
+        sx={{ marginTop: '50px' }}
+      >
+        주식 검색 추이
+      </Typography>
       <LineChart
         xAxis={[
           {

@@ -76,14 +76,22 @@ const RecommendStock = ({ apiUrl, dataType }) => {
                   '&:hover': {
                     transform: 'scale(1.05)',
                   },
-                  paddingBottom: '15px',
+                  // paddingBottom: '15px',
                 }}
               >
                 <CardContent sx={{ flexGrow: 1 }}>
-                  <Typography gutterBottom variant="h5" component="div">
+                  <Typography
+                    gutterBottom
+                    variant="h5"
+                    component="div"
+                    sx={{ fontWeight: 500 }}
+                  >
                     {item.title}
                   </Typography>
-                  <Typography variant="body2" color="text.Secondary">
+                  <Typography
+                    variant="body2"
+                    sx={{ color: 'text.secondary', mt: 1 }}
+                  >
                     {item.content}
                   </Typography>
                 </CardContent>

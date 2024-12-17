@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
   Box,
   Card,
@@ -32,13 +32,13 @@ const KeywordNews = ({ keywordId }) => {
 
   return (
     <div>
-      <h1>KeywordNews</h1>
+      <h1>키워드 관련 뉴스</h1>
       {data ? (
         data.data.map((news) => (
           <Box
             key={news.newsId}
             sx={{
-              maxWidth: 1030,
+              // maxWidth: 1030,
               minWidth: 275,
               mb: 2,
               alignContent: 'center',
