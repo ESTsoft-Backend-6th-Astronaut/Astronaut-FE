@@ -8,16 +8,17 @@ import Main from './pages/Main';
 import RecommendStockSearchVolume from './components/RecommendStockSearchVolume';
 import RecommendStock from './components/RecommendStock';
 import Portfolio from './pages/Portfolio';
-const Home = () => <h1>Home Page</h1>;
 import PortfolioRecommend from './pages/PortfolioRecommend';
+import KakaoCallback from './pages/KakaoCallback';
 
 function App() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Main />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/login/kakao/callback" element={<KakaoCallback />} />
         <Route path="/keyword-details" element={<KeywordDetails />} />
         <Route path="/stock-details" element={<StockDetails />} />
         <Route path="/main" element={<Main />} />

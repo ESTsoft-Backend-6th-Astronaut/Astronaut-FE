@@ -18,6 +18,8 @@ const pages = ['포트폴리오', '키워드'];
 const settings = ['로그아웃'];
 
 function NavBar() {
+  const [auth, setAuth] = React.useState(false);
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
