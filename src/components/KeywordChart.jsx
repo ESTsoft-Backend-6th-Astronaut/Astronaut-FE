@@ -19,15 +19,11 @@ const KeywordChart = () => {
       });
   }, []);
 
-  if (error) {
-    return <p>Error: {error}</p>;
-  }
-
   // interest의 최대값을 찾기
-  const maxInterest = Math.max(...keywords.map(keyword => keyword.interest));
+  const maxInterest = Math.max(...keywords.map((keyword) => keyword.interest));
 
   // 색상 배열 생성
-  const colors = keywords.map(keyword => {
+  const colors = keywords.map((keyword) => {
     if (keyword.interest === maxInterest) {
       return 'rgba(255, 0, 0, 0.6)'; // 최대값을 빨간색으로 설정
     }
@@ -40,7 +36,13 @@ const KeywordChart = () => {
   const bubbleData = {
     datasets: keywords.map((keyword, index) => ({
       label: keyword.keywordName,
-      data: [{ x: index, y: keyword.ranking, r: (keyword.interest / maxInterest) * 100 }],
+      data: [
+        {
+          x: index,
+          y: keyword.ranking,
+          r: (keyword.interest / maxInterest) * 100,
+        },
+      ],
       backgroundColor: colors[index],
     })),
   };
