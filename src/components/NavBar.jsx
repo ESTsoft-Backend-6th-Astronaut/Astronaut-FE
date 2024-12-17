@@ -38,7 +38,10 @@ function NavBar() {
 
   return (
     // 아우터 스페이스 컬러
-    <AppBar position="static" sx={{ backgroundColor: '#2D383A' }}>
+    <AppBar
+      position="static"
+      sx={{ backgroundColor: '#2D383A', marginBottom: '50px' }}
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <img
