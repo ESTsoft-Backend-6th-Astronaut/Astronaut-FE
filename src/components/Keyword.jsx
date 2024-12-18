@@ -61,7 +61,7 @@ const Keyword = () => {
           variant="h5"
           component="div"
           fontWeight="600"
-          sx={{ color: keyword.emotion === 0 ? 'blue' : 'red' }}
+          sx={{ color: keyword.emotion === 0 ? 'red' : 'blue' }}
         >
           {keyword.emotion === 0 ? '긍정적' : '부정적'}
         </Typography>
