@@ -83,7 +83,7 @@ function NavBar() {
               </Typography>
               <Typography
                 component={Link}
-                to="/contact"
+                to="/keyword"
                 sx={{
                   textDecoration: 'none',
                   color: '#ccc',
