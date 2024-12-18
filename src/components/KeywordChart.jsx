@@ -44,7 +44,7 @@ const KeywordChart = () => {
   // 클릭 이벤트 핸들러: keywordId를 경로로 사용하여 페이지 이동
   const handleBubbleClick = (node) => {
     if (node.data.keywordId) {
-      navigate(`/${node.data.keywordId}/keyword-details`); // 이동할 경로
+      navigate(`/keyword/${node.data.keywordId}`); // 이동할 경로
     }
   };
 
