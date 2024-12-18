@@ -41,6 +41,7 @@ function NavBar() {
       localStorage.removeItem('token');
       setUser(null);
       setLoading(false);
+      navigate('/');
     }, 1000);
   };
 
