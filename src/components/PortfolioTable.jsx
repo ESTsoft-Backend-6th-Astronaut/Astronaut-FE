@@ -60,8 +60,11 @@ function PortfolioTable() {
   const [selectedRowId, setSelectedRowId] = useState(null); // 검색으로 선택된 행의 ID 저장
 
   const fetchData = async () => {
+    const token = localStorage.getItem('token');
     try {
-      const response = await axios.get('/api/portfolios');
+      const response = await axios.get('/api/portfolios', {
+        headers: token ? { token: token } : undefined,
+      });
       const fetchedData = Array.isArray(response.data.data)
         ? response.data.data
         : [];

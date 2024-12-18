@@ -64,8 +64,11 @@ function PortfolioList() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
     axios
-      .get('/api/portfolios/current_price')
+      .get('/api/portfolios/current_price', {
+        headers: token ? { token: token } : undefined,
+      })
       .then((response) => {
         setData(response.data);
       })

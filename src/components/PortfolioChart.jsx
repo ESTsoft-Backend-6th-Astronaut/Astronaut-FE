@@ -7,8 +7,11 @@ function PortfolioChart() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
     axios
-      .get('/api/portfolios/current_price')
+      .get('/api/portfolios/current_price', {
+        headers: token ? { token: token } : undefined,
+      })
       .then((response) => {
         const totalValue = response.data
           .map((item) => parseInt(item.currentTotalPrice.replace(/,/g, ''), 10))

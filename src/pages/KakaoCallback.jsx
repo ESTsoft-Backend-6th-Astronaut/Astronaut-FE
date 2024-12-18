@@ -19,7 +19,9 @@ export default function KakaoCallback() {
         setLoading(false);
         console.log(response.data);
         localStorage.setItem('token', response.data.token);
-        localStorage.setItem('username', response.data.username);
+        localStorage.setItem('username', response.data.user.name);
+        localStorage.setItem('email', response.data.user.email);
+        localStorage.setItem('provider', response.data.user.provider);
         navigate('/');
       });
   }, []);
