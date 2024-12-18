@@ -69,7 +69,10 @@ const KeywordRank = () => {
         <Typography variant="h5" component="div" gutterBottom>
           인기 키워드 랭킹
         </Typography>
-        <TableContainer component={Paper}>
+        <TableContainer
+          component={Paper}
+          sx={{ border: 'none', boxShadow: 'none' }}
+        >
           <Table>
             <TableHead>
               <TableRow>

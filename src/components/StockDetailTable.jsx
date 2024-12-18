@@ -49,7 +49,10 @@ function StockDetailTable({ stockId, dataType }) {
   return (
     <div>
       {data ? (
-        <TableContainer component={Paper}>
+        <TableContainer
+          component={Paper}
+          sx={{ border: 'none', boxShadow: 'none' }}
+        >
           <Table
             sx={{ maxWidth: 705, minWidth: 275 }}
             aria-label="stock details table"
