@@ -28,7 +28,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/login/kakao/callback" element={<KakaoCallback />} />
-        <Route path="/stock-details" element={<StockDetails />} />
+        <Route path="/:stock-id/stock-details" element={<StockDetails />} />
         <Route path="/main" element={<Main />} />
         <Route
           path="/:keyword_id/keyword-details"

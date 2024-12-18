@@ -12,14 +12,16 @@ import {
   TableRow,
   Paper,
 } from '@mui/material';
+import { useNavigate } from 'react-router-dom'; // React Router로 페이지 이동
 
 const KeywordRank = () => {
   const [keywords, setKeywords] = useState([]);
   const [error, setError] = useState(null);
+  const navigate = useNavigate(); // React Router로 페이지 이동
 
   useEffect(() => {
     axios
-      .get('/api/keywords/ranking')
+      .get('/api/keywords/get_today')
       .then((response) => {
         setKeywords(response.data);
       })
@@ -27,6 +29,13 @@ const KeywordRank = () => {
         setError(error.message);
       });
   }, []);
+
+  // 클릭 이벤트 핸들러: keywordId를 경로로 사용하여 페이지 이동
+  const handleRowClick = (keywordId) => {
+    if (keywordId) {
+      navigate(`/${keywordId}/keyword-details`); // 이동할 경로
+    }
+  };
 
   if (error) {
     return <p>Error: {error}</p>;
@@ -54,7 +63,14 @@ const KeywordRank = () => {
               {keywords.map((keyword, index) => (
                 <TableRow key={index}>
                   <TableCell>{keyword.ranking}</TableCell>
-                  <TableCell>{keyword.keywordName}</TableCell>
+                  <TableCell
+                    onClick={() => handleRowClick(keyword.keywordId)}
+                    sx={{
+                      cursor: 'pointer',
+                    }}
+                  >
+                    {keyword.keywordName}
+                  </TableCell>
                   <TableCell>
                     {Math.round((keyword.interest / maxInterest) * 100)}%
                   </TableCell>

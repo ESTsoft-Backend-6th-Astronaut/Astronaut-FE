@@ -41,7 +41,6 @@ function PortfolioChart() {
         justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
-        margin: 0,
       }}
     >
       {data ? (
