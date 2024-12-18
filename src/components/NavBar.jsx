@@ -122,7 +122,12 @@ function NavBar() {
                   <Button
                     variant="contained"
                     onClick={() => navigate('/login')}
-                    sx={{ gap: 2, textTransform: 'none' }}
+                    sx={{
+                      gap: 2,
+                      textTransform: 'none',
+                      border: 'none',
+                      boxShadow: 'none',
+                    }}
                     color="dark"
                   >
                     <Avatar sx={{ width: 36, height: 36 }}>
