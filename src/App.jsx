@@ -13,6 +13,7 @@ import Keyword from './components/Keyword';
 import KeywordNews from './components/KeywordNews';
 import KakaoCallback from './pages/KakaoCallback';
 import { createTheme } from '@mui/material';
+import KeywordPage from './pages/KeywordPage';
 
 const theme = createTheme({
   typography: {
@@ -31,6 +32,7 @@ function App() {
         <Route path="/stock/:stock-id" element={<StockDetails />} />
         <Route path="/main" element={<Main />} />
         {/*  여기로 들어가기 */}
+        <Route path="/keyword" element={<KeywordPage />} />
         <Route path="/keyword/:keyword_id" element={<KeywordDetails />} />
         <Route path="/stock-details" element={<StockDetails />} />
         {/* /:keyword_id가 URL파라미터로 keyword_id를 받음 */}
@@ -48,8 +50,7 @@ function App() {
         />
         <Route path="/keyword/:keyword_id/news" element={<KeywordNews />} />
         <Route path="/portfolio" element={<Portfolio />} />
-        <Route path="/portfolio-recommend" element={<PortfolioRecommend />} />
-
+        <Route path="/portfolio/recommend" element={<PortfolioRecommend />} />
       </Routes>
     </div>
   );
