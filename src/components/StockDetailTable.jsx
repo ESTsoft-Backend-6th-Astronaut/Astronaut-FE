@@ -7,20 +7,27 @@ import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-function StockDetailTable() {
+function StockDetailTable({ stockId, dataType }) {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    if (!stockId) return; // recommendStockId가 없으면 요청하지 않음
+
+    const params = {
+      dataType: dataType,
+      stockId: stockId, // 동적으로 파라미터 값 설정
+    };
+
     axios
-      .get('/api/stock/000140')
+      .get('/api/stock/stock_detail', { params })
       .then((response) => {
         setData(response.data);
       })
       .catch((error) => {
         setError(error.message);
       });
-  }, []);
+  }, [dataType, stockId]);
 
   if (error) {
     return <p>Error: {error}</p>;
@@ -32,13 +39,6 @@ function StockDetailTable() {
 
   return (
     <div>
-      {data ? (
-        <h1>
-          {data.data.stockName} ({data.data.stockCode})
-        </h1>
-      ) : (
-        <p>Loading...</p>
-      )}
       {data ? (
         <TableContainer component={Paper}>
           <Table
@@ -57,7 +57,7 @@ function StockDetailTable() {
                   종가
                 </TableCell>
                 <TableCell align="left">
-                  {formatNumber(data.data.stockPrice)} KRW
+                  {formatNumber(data.data.stockPrice)} 원
                 </TableCell>
               </TableRow>
               <TableRow>
@@ -106,7 +106,7 @@ function StockDetailTable() {
                   거래대금
                 </TableCell>
                 <TableCell align="left">
-                  {formatNumber(data.data.dollarVolume)} KRW
+                  {formatNumber(data.data.dollarVolume)} 원
                 </TableCell>
               </TableRow>
               <TableRow>
@@ -114,7 +114,7 @@ function StockDetailTable() {
                   시가총액
                 </TableCell>
                 <TableCell align="left">
-                  {formatNumber(data.data.marketCapitalization)} KRW
+                  {formatNumber(data.data.marketCapitalization)} 원
                 </TableCell>
               </TableRow>
               <TableRow>

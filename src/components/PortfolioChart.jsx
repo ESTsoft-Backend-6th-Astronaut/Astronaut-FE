@@ -35,28 +35,24 @@ function PortfolioChart() {
   }
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '100%',
-      }}
-    >
-      {data ? (
-        <PieChart
-          series={[
-            {
-              data,
-              innerRadius: 75,
-            },
-          ]}
-          width={800}
-          height={200}
-        />
-      ) : (
-        <p>Loading...</p>
-      )}
+    <div>
+      <h2 style={{ marginLeft: '20px' }}>나의 주식 포트폴리오</h2>
+      <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+        {data ? (
+          <PieChart
+            series={[
+              {
+                data,
+                innerRadius: 75,
+              },
+            ]}
+            width={800}
+            height={200}
+          />
+        ) : (
+          <p>Loading...</p>
+        )}
+      </div>
     </div>
   );
 }

@@ -14,7 +14,7 @@ function PortfolioItem({
         border: '1px solid #ccc',
         borderRadius: '8px',
         padding: '13px',
-        marginBottom: '13px',
+        margin: '13px', // 간격 추가
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
@@ -79,22 +79,30 @@ function PortfolioList() {
   }
 
   return (
-    <div>
-      <h1>최신 주가 정보</h1>
-      {data ? (
-        data.map((item) => (
-          <PortfolioItem
-            key={item.stockCode}
-            stockName={item.stockName}
-            currentTotalPrice={item.currentTotalPrice}
-            stockCount={item.stockCount}
-            profitOrLossPrice={item.profitOrLossPrice}
-          />
-        ))
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
+    <Box sx={{ maxWidth: '800px', margin: '0 auto' }}>
+      <h2>최신 주가 정보</h2>
+      <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'space-between',
+        }}
+      >
+        {data ? (
+          data.map((item) => (
+            <PortfolioItem
+              key={item.stockCode}
+              stockName={item.stockName}
+              currentTotalPrice={item.currentTotalPrice}
+              stockCount={item.stockCount}
+              profitOrLossPrice={item.profitOrLossPrice}
+            />
+          ))
+        ) : (
+          <Typography>Loading...</Typography>
+        )}
+      </Box>
+    </Box>
   );
 }
 

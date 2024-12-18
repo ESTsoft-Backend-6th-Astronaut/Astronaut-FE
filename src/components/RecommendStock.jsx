@@ -1,14 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Card, CardContent, Chip, Typography, Stack } from '@mui/material';
+import {
+  Box,
+  Card,
+  CardContent,
+  Chip,
+  Typography,
+  Stack,
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+} from '@mui/material';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import axios from 'axios';
+import StockDetailTable from './StockDetailTable';
 
 const RecommendStock = ({ apiUrl, dataType }) => {
   const [data, setData] = useState([]);
-
-  // 포트폴리오 추천에도 사용할 수 있도록 수정
+  const [open, setOpen] = useState(false); // 모달 열림 상태 관리
+  const [selectedStock, setSelectedStock] = useState(null); // 선택된 주식 정보
 
   // 추천 종목 가져오기
   const fetchData = async () => {
@@ -30,7 +43,7 @@ const RecommendStock = ({ apiUrl, dataType }) => {
         // 포트폴리오 추천 주식
       } else if (dataType === 'PortfolioStockResponseDTO') {
         mappedData = response.data.map((item) => ({
-          id: item.stockCode, // 일단 종목번호로 넣어둠 : 종목번호로 묶이도록록
+          id: item.stockCode, // 일단 종목번호로 넣어둠 : 종목번호로 묶이도록
           title: item.stockName,
           content: item.reason,
           stockPrice: item.stockPrice,
@@ -46,6 +59,22 @@ const RecommendStock = ({ apiUrl, dataType }) => {
   useEffect(() => {
     fetchData();
   }, [apiUrl, dataType]);
+
+  // 카드 클릭 시 모달 열기
+  const handleCardClick = (stock) => {
+    setSelectedStock(stock);
+    setOpen(true);
+  };
+
+  // 모달 닫기
+  const handleClose = () => {
+    setOpen(false);
+    setSelectedStock(null);
+  };
+
+  const formatNumber = (number) => {
+    return Number(number).toLocaleString();
+  };
 
   return (
     <div>
@@ -67,6 +96,7 @@ const RecommendStock = ({ apiUrl, dataType }) => {
           {data.map((item) => (
             <SwiperSlide key={item.id}>
               <Card
+                onClick={() => handleCardClick(item)} // 카드 클릭 시 모달 열기
                 sx={{
                   maxWidth: 350,
                   height: 200,
@@ -105,7 +135,7 @@ const RecommendStock = ({ apiUrl, dataType }) => {
                   }}
                 >
                   <Chip
-                    label={'시가 : ₩' + item.stockPrice}
+                    label={'시가 : ₩' + formatNumber(item.stockPrice)}
                     color="default"
                     size="small"
                   />
@@ -115,6 +145,20 @@ const RecommendStock = ({ apiUrl, dataType }) => {
           ))}
         </Swiper>
       </Box>
+
+      {/* 팝업창(Dialog) */}
+      <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
+        <DialogTitle>{selectedStock?.title} 상세 정보</DialogTitle>
+        <DialogContent>
+          {/* StockDetailTable 컴포넌트 렌더링 */}
+          <StockDetailTable stockId={selectedStock?.id} dataType={dataType} />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary" variant="contained">
+            닫기
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };
