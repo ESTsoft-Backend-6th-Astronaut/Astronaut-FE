@@ -82,7 +82,7 @@ const RecommendStock = ({ apiUrl, dataType }) => {
         sx={{
           width: '100%',
           height: '500px',
-          overflow: 'visible',
+          overflow: 'hidden',
           marginTop: '40px',
         }}
       >
