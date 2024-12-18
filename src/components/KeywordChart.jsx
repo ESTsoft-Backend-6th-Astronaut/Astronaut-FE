@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { ResponsiveCirclePacking } from '@nivo/circle-packing';
 import { useNavigate } from 'react-router-dom'; // 페이지 이동을 위해 사용
-import { Typography } from '@mui/material';
 
 const KeywordChart = () => {
   const [data, setData] = useState({ name: 'root', children: [] }); // 초기 빈 트리 구조
@@ -104,7 +103,12 @@ const KeywordChart = () => {
                     textAnchor="middle"
                     dy="0.3em"
                     fill="white"
-                    style={{ fontSize: '18px', fontWeight: 'bold' }} // 텍스트 스타일
+                    style={{
+                      fontSize: '18px',
+                      fontWeight: 'bold',
+                      cursor: 'pointer',
+                    }} // 텍스트 스타일
+                    onClick={() => handleBubbleClick(node)}
                   >
                     {line}
                   </text>
