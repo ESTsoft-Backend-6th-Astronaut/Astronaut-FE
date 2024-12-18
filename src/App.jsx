@@ -28,26 +28,28 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/login/kakao/callback" element={<KakaoCallback />} />
-        <Route path="/:stock-id/stock-details" element={<StockDetails />} />
+        <Route path="/stock/:stock-id" element={<StockDetails />} />
         <Route path="/main" element={<Main />} />
-        <Route
-          path="/:keyword_id/keyword-details"
-          element={<KeywordDetails />}
-        />
+        {/*  여기로 들어가기 */}
+        <Route path="/keyword/:keyword_id" element={<KeywordDetails />} />
         <Route path="/stock-details" element={<StockDetails />} />
         {/* /:keyword_id가 URL파라미터로 keyword_id를 받음 */}
         <Route
-          path="/:keyword_id/search-volume"
+          path="/keyword/:keyword_id/search-volume"
           element={<RecommendStockSearchVolume />}
         />
         <Route
-          path="/:keyword_id/recommend-stock"
+          path="/keyword/:keyword_id/recommend-stock"
           element={<RecommendStock />}
         />
-        <Route path="/:keyword_id/popular-keyword" element={<Keyword />} />
-        <Route path="/:keyword_id/news" element={<KeywordNews />} />
-        <Route path="/portfolio-recommend" element={<PortfolioRecommend />} />
+        <Route
+          path="/keyword/:keyword_id/popular-keyword"
+          element={<Keyword />}
+        />
+        <Route path="/keyword/:keyword_id/news" element={<KeywordNews />} />
         <Route path="/portfolio" element={<Portfolio />} />
+        <Route path="/portfolio-recommend" element={<PortfolioRecommend />} />
+
       </Routes>
     </div>
   );
