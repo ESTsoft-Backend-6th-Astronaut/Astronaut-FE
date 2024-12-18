@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Typography, Button, Box } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 function RecommendPortfolio() {
   const [portfolios, setPortfolios] = useState([]); // 포트폴리오 데이터
   const [isRecommended, setIsRecommended] = useState(false); // 오늘 종목 추천 여부
   const [loading, setLoading] = useState(true); // 로딩 상태
+
+  const navigate = useNavigate();
 
   // API 호출
   const fetchData = async () => {
@@ -57,13 +60,15 @@ function RecommendPortfolio() {
   // 포트폴리오가 등록되어 있고, 오늘 종목 추천을 받지 않은 경우
   if (!isRecommended) {
     return (
-      <Box sx={BoxStyle}>
+      <Box sx={{ ...BoxStyle, cursor: 'pointer' }}>
         <Typography variant="h6">AI가 추천하는 주식 종목</Typography>
-        <Typography>보유 주식에 어울리는 종목을 추천해드려요</Typography>
+        <Box onClick={() => navigate('/portfolio/recommend')}>
+          <Typography>보유 주식에 어울리는 종목을 추천해드려요</Typography>
+        </Box>
         <Button
           variant="contained"
           sx={{ mt: 2, width: '235px' }}
-          onClick={() => navigate('/portfolio-recommend')}
+          onClick={() => navigate('/portfolio/recommend')}
         >
           AI 종목 추천(1일 1회)
         </Button>
@@ -79,7 +84,7 @@ function RecommendPortfolio() {
       <Button
         variant="contained"
         sx={{ mt: 2, width: '235px', borderRadius: '10px' }}
-        onClick={() => navigate('/portfolio-recommend')}
+        onClick={() => navigate('/portfolio/recommend')}
       >
         추천 결과 보러가기
       </Button>

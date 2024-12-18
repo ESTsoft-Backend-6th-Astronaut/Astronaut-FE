@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { memo } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -16,9 +16,11 @@ import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import logoImage from '../assets/rocketicon.gif';
 import { useNavigate } from 'react-router-dom';
 
-const pages = ['포트폴리오', '키워드'];
-
-function NavBar() {
+const pages = [
+  { name: '포트폴리오', path: '/portfolio' },
+  { name: '키워드', path: '/keyword' },
+];
+const NavBar = memo(function NavBar() {
   const [username, setUsername] = React.useState('');
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -71,9 +73,8 @@ function NavBar() {
             }}
             onClick={() => navigate('/')}
           />
-          <Typography
-            variant="h6"
-            noWrap
+          <Box
+            component="button" // HTML button으로 설정
             sx={{
               mr: 2,
               display: 'flex',
@@ -81,19 +82,33 @@ function NavBar() {
               letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
+              cursor: 'pointer',
+              background: 'none',
+              border: 'none',
+              padding: 0,
             }}
+            onClick={() => navigate('/')}
           >
-            우리는 주식인
-          </Typography>
-
+            <Typography
+              variant="h6"
+              sx={{
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none',
+              }}
+            >
+              우리는 주식인
+            </Typography>
+          </Box>
           <Box sx={{ flexGrow: 1, display: 'flex' }}>
             {pages.map((page) => (
               <Button
-                key={page}
-                onClick={handleCloseNavMenu}
+                key={page.name}
+                onClick={() => navigate(page.path)}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                {page.name}
               </Button>
             ))}
           </Box>
@@ -122,7 +137,12 @@ function NavBar() {
                   <Button
                     variant="contained"
                     onClick={() => navigate('/login')}
-                    sx={{ gap: 2, textTransform: 'none' }}
+                    sx={{
+                      gap: 2,
+                      textTransform: 'none',
+                      border: 'none',
+                      boxShadow: 'none',
+                    }}
                     color="dark"
                   >
                     <Avatar sx={{ width: 36, height: 36 }}>
@@ -138,5 +158,5 @@ function NavBar() {
       </Container>
     </AppBar>
   );
-}
+});
 export default NavBar;

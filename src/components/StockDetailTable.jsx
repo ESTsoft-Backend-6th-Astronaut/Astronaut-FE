@@ -16,11 +16,20 @@ function StockDetailTable({ stockId, dataType }) {
 
     const params = {
       dataType: dataType,
-      stockId: stockId, // 동적으로 파라미터 값 설정
     };
 
+    // 키워드 추천 종목일 때와 포트폴리오 추천 종목일 때의 요청url을 분리
+
+    let url = '/api/stock';
+
+    if (dataType === 'RecommendKeywordStockDTO') {
+      url += `/stock_detail?dataType=${dataType}&stockId=${stockId}`;
+    } else if (dataType === 'PortfolioStockResponseDTO') {
+      url += `/${stockId}`;
+    }
+
     axios
-      .get('/api/stock/stock_detail', { params })
+      .get(url)
       .then((response) => {
         setData(response.data);
       })
@@ -40,7 +49,10 @@ function StockDetailTable({ stockId, dataType }) {
   return (
     <div>
       {data ? (
-        <TableContainer component={Paper}>
+        <TableContainer
+          component={Paper}
+          sx={{ border: 'none', boxShadow: 'none' }}
+        >
           <Table
             sx={{ maxWidth: 705, minWidth: 275 }}
             aria-label="stock details table"
