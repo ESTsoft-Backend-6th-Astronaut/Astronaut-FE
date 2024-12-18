@@ -99,7 +99,7 @@ const RecommendStock = ({ apiUrl, dataType }) => {
                 onClick={() => handleCardClick(item)} // 카드 클릭 시 모달 열기
                 sx={{
                   maxWidth: 350,
-                  height: 200,
+                  height: 225,
                   display: 'flex',
                   flexDirection: 'column',
                   transition: 'transform 0.3s',
