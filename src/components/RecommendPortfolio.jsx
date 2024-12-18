@@ -62,13 +62,13 @@ function RecommendPortfolio() {
     return (
       <Box sx={{ ...BoxStyle, cursor: 'pointer' }}>
         <Typography variant="h6">AI가 추천하는 주식 종목</Typography>
-        <Box onClick={() => navigate('/porfolio-recommend')}>
+        <Box onClick={() => navigate('/portfolio/recommend')}>
           <Typography>보유 주식에 어울리는 종목을 추천해드려요</Typography>
         </Box>
         <Button
           variant="contained"
           sx={{ mt: 2, width: '235px' }}
-          onClick={() => navigate('/portfolio-recommend')}
+          onClick={() => navigate('/portfolio/recommend')}
         >
           AI 종목 추천(1일 1회)
         </Button>
@@ -84,7 +84,7 @@ function RecommendPortfolio() {
       <Button
         variant="contained"
         sx={{ mt: 2, width: '235px', borderRadius: '10px' }}
-        onClick={() => navigate('/portfolio-recommend')}
+        onClick={() => navigate('/portfolio/recommend')}
       >
         추천 결과 보러가기
       </Button>
