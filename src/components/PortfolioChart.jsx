@@ -41,6 +41,7 @@ function PortfolioChart() {
         justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
+        margin: 0,
       }}
     >
       {data ? (
@@ -48,11 +49,11 @@ function PortfolioChart() {
           series={[
             {
               data,
-              innerRadius: 75,
+              innerRadius: 120,
             },
           ]}
           width={800}
-          height={200}
+          height={300}
         />
       ) : (
         <p>Loading...</p>

@@ -62,7 +62,7 @@ function RecommendPortfolio() {
         <Typography>보유 주식에 어울리는 종목을 추천해드려요</Typography>
         <Button
           variant="contained"
-          sx={{ mt: 2 }}
+          sx={{ mt: 2, width: '235px' }}
           onClick={() => navigate('/portfolio-recommend')}
         >
           AI 종목 추천(1일 1회)
@@ -78,7 +78,7 @@ function RecommendPortfolio() {
       <Typography>보유 주식에 어울리는 종목을 추천해드려요</Typography>
       <Button
         variant="contained"
-        sx={{ mt: 2 }}
+        sx={{ mt: 2, width: '235px', borderRadius: '10px' }}
         onClick={() => navigate('/portfolio-recommend')}
       >
         추천 결과 보러가기

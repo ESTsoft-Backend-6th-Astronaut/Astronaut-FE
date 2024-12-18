@@ -27,7 +27,7 @@ const EditableCell = ({
   onSearch,
 }) => {
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+    <Box sx={{ display: 'flex', alignItems: 'center', paddingX: 'auto' }}>
       {isEditable ? (
         <TextField
           variant="standard"
@@ -240,9 +240,27 @@ function PortfolioTable() {
 
   return (
     <div>
-      <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
-        <TableContainer component={Paper} sx={{ maxWidth: 1000 }}>
-          <Table sx={{ minWidth: 275 }} aria-label="portfolio table">
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          mt: 2,
+          marginTop: '80px',
+        }}
+      >
+        <TableContainer
+          component={Paper}
+          sx={{
+            maxWidth: 1000,
+            border: 'none',
+            boxShadow: 'none',
+            marginBottom: '100px',
+          }}
+        >
+          <Table
+            sx={{ minWidth: 275, border: 'none' }}
+            aria-label="portfolio table"
+          >
             <TableHead>
               <TableRow>
                 <TableCell align="left">기업명</TableCell>
@@ -348,13 +366,21 @@ function PortfolioTable() {
             <IconButton size="small" onClick={handleAddRow}>
               <AddCircleOutlineIcon color="primary" />
             </IconButton>
-            <Button variant="contained" onClick={handleSave} sx={{ ml: 1 }}>
+            <Button
+              variant="contained"
+              onClick={handleSave}
+              sx={{ ml: 1, width: '165px', borderRadius: '10px' }}
+            >
               저장
             </Button>
           </>
         ) : !isEditMode ? (
           // 데이터가 있고 편집 모드가 아닐 때
-          <Button variant="contained" onClick={() => setIsEditMode(true)}>
+          <Button
+            variant="contained"
+            sx={{ width: '165px', borderRadius: '10px' }}
+            onClick={() => setIsEditMode(true)}
+          >
             수정하기
           </Button>
         ) : (
@@ -369,11 +395,15 @@ function PortfolioTable() {
                 setIsEditMode(false);
                 handleCancelEdit();
               }}
-              sx={{ ml: 1 }}
+              sx={{ ml: 1, width: '165px', borderRadius: '10px' }}
             >
               취소
             </Button>
-            <Button variant="contained" onClick={handleSave} sx={{ ml: 1 }}>
+            <Button
+              variant="contained"
+              onClick={handleSave}
+              sx={{ ml: 1, width: '165px', borderRadius: '10px' }}
+            >
               저장
             </Button>
           </>
