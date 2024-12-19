@@ -33,7 +33,7 @@ const Loading = () => {
       >
         <CircularProgress />
         <Typography variant="h6" style={{ marginTop: '1rem' }}>
-          로딩 중...
+          로딩 중....
         </Typography>
       </Box>
     );

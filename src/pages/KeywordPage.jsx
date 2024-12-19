@@ -8,6 +8,7 @@ const KeywordPage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // 로딩 로직
     setTimeout(() => {
       setLoading(false);
     }, 2000);

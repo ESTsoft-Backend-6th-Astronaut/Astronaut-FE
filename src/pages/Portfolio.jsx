@@ -5,17 +5,27 @@ import PortfolioChart from '../components/PortfolioChart';
 import { Box, Typography } from '@mui/material';
 import NavBar from '../components/NavBar';
 import { Padding } from '@mui/icons-material';
+import Loading from '../components/Loading';
 
 function Portfolio() {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const username = localStorage.getItem('username');
     const email = localStorage.getItem('email');
     if (username && email) {
       setUser({ username, email });
     }
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
   }, []);
-  return (
+
+  return loading ? (
+    <Loading />
+  ) : (
     <div>
       <NavBar />
       <div
