@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import NavBar from '../components/NavBar';
 import RecommendStock from '../components/RecommendStock';
-import KeywordNews from '../components/KeywordNews';
 import Loading from '../components/Loading';
 
 const PortfolioRecommend = () => {
+  const [loading, setLoading] = useState(true);
   const portfolioRecommendApiUrl = `/api/portfolios/portfolio_recommend`;
 
   useEffect(() => {
@@ -22,7 +22,6 @@ const PortfolioRecommend = () => {
         apiUrl={portfolioRecommendApiUrl}
         dataType="PortfolioStockResponseDTO"
       />
-      <KeywordNews />
     </div>
   );
 };

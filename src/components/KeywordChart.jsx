@@ -76,7 +76,12 @@ const KeywordChart = () => {
           margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
           id="name"
           value="value"
-          colors={(node) => node.data.color} // 각 노드의 color 속성 사용
+          colors={(node) => {
+            if (node.depth === 0) {
+              return 'white';
+            }
+            return node.data.color;
+          }} // 각 노드의 color 속성 사용
           padding={4}
           labelTextColor={{ from: 'color', modifiers: [['darker', 2]] }}
           circleComponent={({ node }) => {
@@ -91,7 +96,7 @@ const KeywordChart = () => {
                   cx={node.x} // 원의 x 좌표 설정
                   cy={node.y} // 원의 y 좌표 설정
                   r={node.radius} // 반지름 설정
-                  fill={node.data.color}
+                  fill={node.depth === 0 ? 'transparent' : node.data.color}
                   onClick={() => handleBubbleClick(node)} // 클릭 이벤트 핸들러 추가
                   style={{ cursor: 'pointer' }}
                 />
@@ -99,8 +104,9 @@ const KeywordChart = () => {
                   <text
                     key={index}
                     x={node.x}
-                    y={node.y + index * 25 - (lines.length * 10) / 2} // 줄바꿈 간격 설정
+                    y={node.y + index * 25 - (lines.length * 10) / 2}
                     textAnchor="middle"
+                    alignmentBaseline="middle"
                     dy="0.3em"
                     fill="white"
                     style={{

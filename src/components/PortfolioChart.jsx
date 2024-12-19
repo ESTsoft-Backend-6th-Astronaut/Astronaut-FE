@@ -37,6 +37,11 @@ function PortfolioChart() {
     return <p>Error: {error}</p>;
   }
 
+  // 데이터가 없을 때 메시지 출력
+  if (data && data.length === 0) {
+    return <h2>아직 입력한 포트폴리오가 없습니다.</h2>;
+  }
+
   return (
     <div
       style={{
