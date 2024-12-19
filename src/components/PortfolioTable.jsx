@@ -74,6 +74,12 @@ function PortfolioTable() {
       setIsEditMode(fetchedData.length <= 0);
     } catch (error) {
       console.error('데이터 로딩 실패:', error);
+      console.log('에러 상세:', {
+        message: error.message,
+        response: error.response?.data,
+        status: error.response?.status,
+      });
+      setError('데이터 로드 중 문제 발생');
       setIsDataLoaded(true);
     }
   };
@@ -175,6 +181,8 @@ function PortfolioTable() {
     // 기존에 있던 행(수정된 데이터)
     const existingRows = data.filter((row) => !row.isNewRow);
 
+    const token = localStorage.getItem('token'); // localStorage에서 token 가져오기
+
     // 입력 검증
     const invalidRows = newRows.filter(
       (row) =>
@@ -197,7 +205,9 @@ function PortfolioTable() {
           averagePrice: row.averagePrice,
           stockCount: row.stockCount,
         }));
-        await axios.post('/api/portfolios', newPayload);
+        await axios.post('/api/portfolios', newPayload, {
+          headers: { token }, // 헤더에 token 추가
+        });
       }
 
       // PATCH 요청 (기존 행 수정)
