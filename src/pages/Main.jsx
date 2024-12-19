@@ -5,17 +5,26 @@ import KeywordChart from '../components/KeywordChart';
 import KeywordRank from '../components/KeywordRank';
 import NavBar from '../components/NavBar';
 import { Box, Typography } from '@mui/material';
+import Loading from '../components/Loading';
 
 function Main() {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const username = localStorage.getItem('username');
     const email = localStorage.getItem('email');
     if (username && email) {
       setUser({ username, email });
     }
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
   }, []);
-  return (
+
+  return loading ? (
+    <Loading />
+  ) : (
     <>
       {/* 네비게이션 바 */}
       <NavBar />
