@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { CircularProgress, Box, Typography } from '@mui/material';
 
+import logoImage from '../assets/rocketicon.gif';
+
 const Loading = () => {
   const [quote, setQuote] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -43,11 +45,23 @@ const Loading = () => {
       flexDirection="column"
       alignItems="center"
       justifyContent="center"
-      height="10vh"
+      height="100vh"
     >
+      <iframe
+        src="https://lottie.host/embed/68c757a2-ac86-4789-ab7f-1adb333216b5/L0A4eD16Ea.lottie"
+        style={{
+          border: 'none',
+          width: '400',
+          height: '400',
+        }}
+        title="Loading Animation"
+      ></iframe>
       {quote && (
         <>
-          <Typography variant="h6" style={{ marginBottom: '1rem' }}>
+          <Typography
+            variant="h6"
+            style={{ marginBottom: '1rem', marginTop: '3rem' }}
+          >
             &quot;{quote.quoteContent}&quot;
           </Typography>
           <Typography variant="subtitle1">- {quote.quoteAuthor}</Typography>
