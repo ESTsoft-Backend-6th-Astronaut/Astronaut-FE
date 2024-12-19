@@ -83,7 +83,11 @@ function PortfolioList() {
 
   return (
     <Box sx={{ maxWidth: '800px', margin: '0 auto' }}>
-      <h2>최신 주가 정보</h2>
+      <h2>
+        {data && data.length > 0
+          ? '최신 주가 정보'
+          : '아직 보유 주식 데이터가 없습니다.'}
+      </h2>
       <Box
         sx={{
           display: 'flex',
