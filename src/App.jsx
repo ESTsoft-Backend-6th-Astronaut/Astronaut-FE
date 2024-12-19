@@ -14,6 +14,7 @@ import KeywordNews from './components/KeywordNews';
 import KakaoCallback from './pages/KakaoCallback';
 import { createTheme } from '@mui/material';
 import KeywordPage from './pages/KeywordPage';
+import Loading from './pages/LoadingPageTest';
 
 const theme = createTheme({
   typography: {
@@ -51,6 +52,7 @@ function App() {
         <Route path="/keyword/:keyword_id/news" element={<KeywordNews />} />
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/portfolio/recommend" element={<PortfolioRecommend />} />
+        <Route path="/loading" element={<Loading />} />
       </Routes>
     </div>
   );
